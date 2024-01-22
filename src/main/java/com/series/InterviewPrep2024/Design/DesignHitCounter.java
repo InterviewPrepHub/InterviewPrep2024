@@ -1,5 +1,8 @@
 package com.series.InterviewPrep2024.Design;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /*
 In this question, you need to design a HitCounter class.
 
@@ -12,18 +15,33 @@ Where timestamp is in seconds.
  */
 public class DesignHitCounter {
 
+    Queue<Integer> counter;
+    int FIVE_MIN = 300;
 
 
     DesignHitCounter() {
-
+        counter = new LinkedList<>();
     }
 
     public void hit(int timestamp) {
-
+        counter.offer(timestamp);
     }
 
-    public int getHits(int Timestamp) {
-        return 0;
+    public int getHits(int timestamp) {
+        while(!counter.isEmpty() && (timestamp - counter.peek() >= FIVE_MIN)) {
+            counter.poll();
+        }
+        return counter.size();
+    }
 
+    public static void main(String[] args) {
+        DesignHitCounter d = new DesignHitCounter();
+        d.hit(1);
+        d.hit(2);
+        d.hit(3);
+        System.out.println(d.getHits(4));
+        d.hit(300);
+        System.out.println(d.getHits(300));
+        System.out.println(d.getHits(301));
     }
 }

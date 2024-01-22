@@ -26,10 +26,14 @@ public class DesignUndergroundSystem {
         if (checkInMap.containsKey(id)) {
             String startSt = checkInMap.get(id).stationName;
             String endSt = stationName;
+
+            String key = startSt+"_"+endSt;
+
             int startTime = checkInMap.get(id).time;
             int endTime = t;
-            String key = startSt+"_"+endSt;
+
             int total_time = endTime - startTime;
+
             double[] pair = new double[2];
             pair[0] += total_time;
             pair[1] ++;

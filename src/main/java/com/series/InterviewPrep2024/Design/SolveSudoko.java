@@ -14,81 +14,100 @@ public class SolveSudoko {
                 { 0, 0, 0, 0, 0, 0, 0, 7, 4 },
                 { 0, 0, 5, 2, 0, 6, 3, 0, 0 } };
 
-        if (sudokoSolver(grid))
+        if(solveSudoku(grid, 0, 0)) {
             print(grid);
-        else
-            System.out.println("No Solution exists");
-    }
-
-    public void sudokoSolver(int[][] grid) {
-        helper(grid, 0, 0);
-    }
-
-    private boolean helper(int[][] grid, int row, int col) {
-
-        int new_row = 0, new_col = 0;
-        if(col!= grid.length-1) {
-            new_row = row;
-            new_col = col+1;
         } else {
-            new_row = row+1;
-            new_col = 0;
+            System.out.println("No solution exists");
         }
+    }
 
-        if (grid[row][col]!=0) {
-            helper(grid, new_row, new_col);
+
+    // N is the size of the 2D matrix   N*N
+    static int N = 9;
+
+    static boolean solveSudoku(int grid[][], int row, int col) {
+
+        /*if we have reached the 8th row and 9th column ,we are returning true to avoid further backtracking */
+        if (row == N - 1 && col == N)
             return true;
-        } else {
-            for (int num = 0; num <=9; num++) {
-                if(isSafe(grid, row, col, num)) {
-                    grid[row][col] = num;
-                    if (helper(grid, new_row, new_col)) {
-                        return true;
-                    } else {
-                        grid[row][col] = 0;
-                    }
-                }
-            }
-            return false;
+
+        // Check if column value  becomes 9 ,we move to next row and column start from 0
+        if (col == N) {
+            row++;
+            col = 0;
         }
 
+        // Check if the current position of the grid already contains value >0, we iterate for next column
+        if (grid[row][col] != 0)
+            return solveSudoku(grid, row, col + 1);
+
+        for (int num = 1; num < 10; num++) {
+
+            // Check if it is safe to place the num (1-9)  in the given row ,col ->we move to next column
+            if (isSafe(grid, row, col, num)) {
+
+                /*  assigning the num in the current (row,col)  position of the grid and assuming our assigned num in the position is correct */
+                grid[row][col] = num;
+
+                // Checking for next
+                // possibility with next column
+                if (solveSudoku(grid, row, col + 1))
+                    return true;
+            }
+            /* removing the assigned num , since our
+               assumption was wrong , and we go for next
+               assumption with diff num value   */
+            grid[row][col] = 0;
+        }
+        return false;
     }
 
-    private boolean isSafe(int[][] grid, int row, int col, int num) {
-
-        for (int x = 0; x <= 9; x++) {
-            if (grid[row][x] == num) {
-                return false;
-            }
-        }
-
-        for (int y = 0; y <= 9; y++) {
-            if (grid[y][col] == num) {
-                return false;
-            }
-        }
-
-        int matRow = row - row%3;
-        int matCol = col - col%3;
-
-        for (int i = 0; i <= 9; i++) {
-            for (int j = 0; j <= 9; j++) {
-                if(grid[i+matRow][j+matCol] == num) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    private static void print(int[][] grid) {
-
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                System.out.print(grid[i][j]+",");
-            }
+    /* A utility function to print grid */
+    static void print(int[][] grid)
+    {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++)
+                System.out.print(grid[i][j] + " ");
             System.out.println();
         }
     }
 
+    private static boolean isSafe(int[][] grid, int row, int col, int num) {
+
+        for (int x = 0; x <= 8; x++)
+            if (grid[row][x] == num)
+                return false;
+
+        for (int x = 0; x <= 8; x++)
+            if (grid[x][col] == num)
+                return false;
+
+        int startRow = row - row % 3, startCol = col - col % 3;
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                if (grid[i + startRow][j + startCol] == num)
+                    return false;
+
+
+        return true;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
