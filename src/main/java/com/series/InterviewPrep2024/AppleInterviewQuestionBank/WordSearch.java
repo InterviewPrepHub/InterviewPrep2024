@@ -55,22 +55,22 @@ public class WordSearch {
         }
 
 
-        char c = board[i][j];
+//        char c = board[i][j];
         visited[i][j] = true;
 
-        boolean top = search(board, word, i-1, j, index+1, m, n, visited);
-        boolean left = search(board, word, i, j+1, index+1, m, n, visited);
-        boolean right = search(board, word, i, j-1, index+1, m, n, visited);
-        boolean bottom = search(board, word, i+1, j, index+1, m, n, visited);
+        boolean found = search(board, word, i-1, j, index+1, m, n, visited) ||
+                search(board, word, i, j+1, index+1, m, n, visited) ||
+                search(board, word, i, j-1, index+1, m, n, visited) ||
+                search(board, word, i+1, j, index+1, m, n, visited);
 
-        board[i][j] = c;
+//        board[i][j] = c;
 
-        return top || bottom || left || right;
+        return found;
     }
 
     public static void main(String[] args) {
         char[][] board = {{'A','B','C','E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
-        String word = "ABCCED";
+        String word = "ABCCEF";
         System.out.println(searchWord(board, word));
     }
 }
