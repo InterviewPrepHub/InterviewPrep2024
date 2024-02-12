@@ -1,4 +1,4 @@
-package com.series.InterviewPrep2024.AppleInterviewQuestionBank;
+package com.series.InterviewPrep2024.AppleInterviewQuestionBank.Heap;
 
 import java.util.*;
 
