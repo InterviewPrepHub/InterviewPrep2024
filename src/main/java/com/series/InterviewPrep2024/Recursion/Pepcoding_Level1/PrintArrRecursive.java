@@ -1,4 +1,4 @@
-package com.series.InterviewPrep2024.Recursion.Level1;
+package com.series.InterviewPrep2024.Recursion.Pepcoding_Level1;
 
 public class PrintArrRecursive {
 

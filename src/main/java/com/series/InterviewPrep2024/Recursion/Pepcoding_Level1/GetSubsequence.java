@@ -1,4 +1,4 @@
-package com.series.InterviewPrep2024.Recursion.Level1;
+package com.series.InterviewPrep2024.Recursion.Pepcoding_Level1;
 
 import java.util.ArrayList;
 
@@ -7,12 +7,12 @@ public class GetSubsequence {
     public static void main(String[] args) {
         String s = "abc";
         ArrayList<String> res = getSubsequence(s);
-        for (String s1:res
-             ) {
+        for (String s1:res) {
             System.out.println(s1);
         }
     }
 
+    //time complexity - 2 raise to power s.length
     private static ArrayList<String> getSubsequence(String s) {
 
         if (s.length() == 0) {
