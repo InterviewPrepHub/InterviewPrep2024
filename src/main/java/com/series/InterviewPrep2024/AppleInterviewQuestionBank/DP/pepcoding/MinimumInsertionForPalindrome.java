@@ -6,10 +6,18 @@ public class MinimumInsertionForPalindrome {    //similar to longest common subs
         String str = "geeks";
 //        int res = findInsertions(str, 0, str.length()-1);
 //        System.out.println(res);
-
         int val = findInsertionLCS(str);
         System.out.println(val);
     }
+
+//        g   e   e   k   s   _
+//    s   3   3   2   2   2   0
+//    k   3   3   2   1   0   0
+//    e   3   3   2   0   0   0
+//    e   2   2   1   0   0   0
+//    g   1   0   0   0   0   0
+//    _   0   0   0   0   0   0
+
 
     private static int findInsertionLCS(String str) {
         StringBuilder s = new StringBuilder(str);

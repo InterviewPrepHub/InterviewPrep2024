@@ -26,6 +26,8 @@ public class GraphImplementation {
         }
 
         visited[src] = true;
+
+        System.out.print(src + " ");
         for (Edge edge : adj[src]) {
             if (visited[edge.nbr] == false) {
                 boolean hasNbrPath = hasPath(edge.nbr, dest, visited);

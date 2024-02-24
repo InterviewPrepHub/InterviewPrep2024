@@ -1,4 +1,4 @@
-package com.series.InterviewPrep2024.AppleInterviewQuestionBank.Graph;
+package com.series.InterviewPrep2024.AppleInterviewQuestionBank.Graph.ConnectedSets;
 
 /*
 Given a 2–d matrix , which has only 1’s and 0’s in it. Find the total number of connected sets in that matrix.

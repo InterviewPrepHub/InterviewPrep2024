@@ -5,7 +5,7 @@ import java.util.*;
 public class FindNthDegreeOfConnection {
 
     int v;
-    ArrayList<Character> adj[];
+    ArrayList<Character>[] adj;
 
     public FindNthDegreeOfConnection(int v) {
         this.v = v;
@@ -16,7 +16,7 @@ public class FindNthDegreeOfConnection {
     }
 
     public void addEdge(char v, char w) {
-        adj[v].add(w);
+        adj[v - 'A'].add(w);
     }
 
     public static void main(String[] args) {
@@ -43,7 +43,7 @@ public class FindNthDegreeOfConnection {
         Queue<Character> queue = new LinkedList<>();
         boolean[] visited = new boolean[v];
 
-        queue.add((char) (start - 'A')); // Convert character to its integer representation
+        queue.add(start);
         visited[start - 'A'] = true;
 
         int currentDegree = 0;
@@ -53,9 +53,9 @@ public class FindNthDegreeOfConnection {
 
             for (int i = 0; i < size; i++) {
                 char current = queue.poll();
-                result.add((char) (current + 'A')); // Convert back to character for the result
+                result.add(current);
 
-                for (char neighbor : adj[current]) {
+                for (char neighbor : adj[current - 'A']) {
                     if (!visited[neighbor - 'A']) {
                         queue.add(neighbor);
                         visited[neighbor - 'A'] = true;

@@ -10,6 +10,13 @@ public class LongestCommonSubsequence {
         System.out.println(lcs(s1, s2));
     }
 
+//        a   b   c   d   _
+//    a   3   2   1   1   0
+//    e   2   2   1   1   0
+//    b   2   2   1   1   0
+//    d   1   1   1   1   0
+//    _   0   0   0   0   0
+
     private static int lcs(String s1, String s2) {
         int n = s1.length()+1;
         int m = s2.length()+1;

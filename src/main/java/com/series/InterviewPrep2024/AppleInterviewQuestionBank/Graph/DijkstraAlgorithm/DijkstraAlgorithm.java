@@ -1,9 +1,12 @@
-package com.series.InterviewPrep2024.AppleInterviewQuestionBank.Graph;
+package com.series.InterviewPrep2024.AppleInterviewQuestionBank.Graph.DijkstraAlgorithm;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.PriorityQueue;
 
+/*
+How to find Shortest Paths from Source to all Vertices using Dijkstra’s Algorithm
+ */
 public class DijkstraAlgorithm {
 
     int v;
@@ -20,6 +23,13 @@ public class DijkstraAlgorithm {
     private void addEdge(int src, int nbr, int wt) {
         adj[src].add(new Edge(src,nbr,wt));
     }
+
+/*
+    0-------3--------4
+    |       |       | \
+    |       |       |  \
+    1-------2       5---6
+*/
 
     public static void main(String[] args) {
         int n = 7;
