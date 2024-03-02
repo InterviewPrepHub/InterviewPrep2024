@@ -1,5 +1,7 @@
 package com.series.InterviewPrep2024.Design;
 
+import java.util.HashMap;
+
 /*
 The challenge is to create a virtual file system that can create new paths and assign values to them.
 Each path follows a structure similar to file directories in operating systems, beginning with a / (e.g., /path),
@@ -17,29 +19,57 @@ the method should return -1.
  */
 public class DesignFileSystem {
 
-    public DesignFileSystem() {
+    HashMap<String, Integer> fileValuesMap;
 
+    public DesignFileSystem() {
+        fileValuesMap = new HashMap<>();
     }
 
     public boolean createPath(String path, int value) {
-        return false;
+
+        if(fileValuesMap.isEmpty()) {
+            fileValuesMap.put(path,value);
+            return true;
+        }
+
+        if(fileValuesMap.containsKey(path) || !isValidPath(path)) {
+            return false;
+        }
+
+        fileValuesMap.put(path, value);
+
+        return true;
+    }
+
+    public boolean isValidPath(String path) {
+        int lastIndexPath = path.lastIndexOf("/");
+        if (lastIndexPath == -1) {
+            return false;
+        }
+
+        String parentPath = path.substring(0, lastIndexPath);
+        return fileValuesMap.containsKey(parentPath);
     }
 
     // Method to get the value of a given path in the file system.
     public int get(String path) {
 
-        return -1;
+        if (fileValuesMap.get(path) == null) {
+            return -1;
+        }
+
+        return fileValuesMap.get(path);
     }
 
 
     public static void main(String[] args) {
         DesignFileSystem d = new DesignFileSystem();
-        d.createPath("/a", 1);
-        d.createPath("/a/b", 2);
-        d.createPath("/a/b/c", 3);
-        d.get("/a/b");
-        d.createPath("/a/b/c", 4);
-        d.get("/a/b/c");
-        d.get("/d");
+        System.out.println(d.createPath("/a", 1));
+        System.out.println(d.createPath("/a/b", 2));
+        System.out.println(d.createPath("/a/b/c", 3));
+        System.out.println(d.get("/a/b"));
+        System.out.println(d.createPath("/a/b/c", 4));
+        System.out.println(d.get("/a/b/c"));
+        System.out.println(d.get("/d"));
     }
 }

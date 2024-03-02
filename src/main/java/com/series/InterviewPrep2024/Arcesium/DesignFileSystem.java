@@ -68,8 +68,14 @@ public class DesignFileSystem {
      * @return: the result of create
      */
     public boolean createPath(String path, int val) {
+
+        if(fileValues.isEmpty()) {
+            fileValues.put(path,val);
+            return true;
+        }
+
         // Check if the path already exists or its parent path doesn't exist
-        if (fileValues.containsKey(path) || !isValidPath(path)) {
+        if (fileValues.containsKey(path) || isValidPath(path)) {
             return false;
         }
 
