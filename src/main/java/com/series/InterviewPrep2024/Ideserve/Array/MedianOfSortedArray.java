@@ -82,9 +82,11 @@ public class MedianOfSortedArray {
         MedianOfSortedArray solution = new MedianOfSortedArray();
 
         System.out.println("Case 1: When arrays have odd number of elements in them.");
-        int [] a = {1,2,3,4,5};
-        int [] b = {6,7,8,9,10};
+//        int [] a = {1,2,3,4,5};
+//        int [] b = {6,7,8,9,10};
 
+        int[] a = {1,3,6};
+        int[] b = {2,8,12};
         System.out.println("Median: " + solution.findMedianSortedArrays(a, b, 0, a.length-1, 0, b.length-1));
 
     }
