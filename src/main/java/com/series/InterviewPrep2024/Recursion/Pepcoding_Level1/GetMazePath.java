@@ -12,7 +12,14 @@ public class GetMazePath {
 
         ArrayList<String> res = mazePath(1, 1, n, m);
         System.out.println(res.size());
+
+//        int res1 = countPaths(3, 2);
+//        System.out.println(res1);
     }
+
+    /*
+    Time complexity
+     */
 
     private static ArrayList<String> mazePath(int sr, int sc, int dr, int dc) {
 
@@ -44,4 +51,22 @@ public class GetMazePath {
 
         return paths;
     }
+
+
+    public static int countPaths(int n, int m) {
+        int[][] dp = new int[n][m];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (i == 0 || j == 0) {
+                    dp[i][j] = 1; // Only one way to get to any cell in the first row or column
+                } else {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1]; // Ways from above + ways from left
+                }
+            }
+        }
+
+        return dp[n - 1][m - 1]; // Return the count of paths to the bottom-right corner
+    }
+
 }
