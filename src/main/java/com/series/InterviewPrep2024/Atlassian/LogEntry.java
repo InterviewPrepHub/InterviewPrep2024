@@ -1,4 +1,4 @@
-package com.series.InterviewPrep2024.One;
+package com.series.InterviewPrep2024.Atlassian;
 
 /*
 We are writing software to analyze logs for toll booths on a highway. This highway is a divided highway with limited
